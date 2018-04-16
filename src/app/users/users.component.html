@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card my-3">
+    <div class="card-body form-inline">
+      <label for="search">Search Github Users: </label>
+      <input type="search" id="search" class="form-control ml-2" [(ngModel)]="search">
+      <button type="button" class="btn btn-primary ml-2" (click)="getUser(search)">Add User</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let user of users">
+      <div class="card" [routerLink]="['/users', user.login]">
+        <img class="card-img-top" [src]="user.avatar_url" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a target="_blank" (click)="$event.stopPropagation();" [href]="user.html_url">{{ user.login }}</a>
+          </h5>
+          <p class="card-text">
+            <strong>Name:</strong> {{ user.name }}</p>
+          <p class="card-text">
+            <strong>Company:</strong> {{ user.company }}</p>
+          <p class="card-text">
+            <strong>Location:</strong> {{ user.location }}</p>
+          <p class="card-text">
+            <strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Followers: {{ user.followers }}</li>
+          <li class="list-group-item">Following: {{ user.following }}</li>
+          <li class="list-group-item">Member since: {{ user.created_at | date }}</li>
+          <li class="list-group-item">Public repo: {{ user.public_repos }}</li>
+          <li class="list-group-item">Public gists: {{ user.public_gists }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
