@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersComponent implements OnInit {
   users: any[] = [];
+  username = '';
   constructor(private http: HttpClient) {
 
   }
@@ -29,15 +30,16 @@ export class UsersComponent implements OnInit {
         if (!user) {
           this.users.push(data);
           this.storeUser();
+          alert('User added to list.');
         } else {
-          alert('User already added.')
+          alert('User already added.');
         }
       }, (error) => {
         console.log(error);
-        alert('User not found.')
+        alert('User not found.');
       });
     } else {
-      alert('Username is required.')
+      alert('Username is required.');
     }
   }
 
